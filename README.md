@@ -1,2 +1,2 @@
-# Master_Project-Hypermind-
+# MasterProject-Hypermind
 
