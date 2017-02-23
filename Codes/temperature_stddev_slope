@@ -1,0 +1,56 @@
+import pandas as pd
+import glob
+
+
+path1 =r'C:\Users\Soumy Jacob\Desktop\Project\Data\working'
+path2 =r'C:\Users\Soumy Jacob\Desktop\Project\Data\ir'
+gaze_filenames = glob.glob(path1 + "/*.csv")
+temp_filenames = glob.glob(path2 + "/*.csv")
+out_start = []
+out_end = []
+out_temp = []
+out_slope = []
+gstart = 0
+out_temp_file = []
+out_gaze_file = []
+i = 0
+gprevbottom = 0
+
+while(i<7):
+    tempset1 = pd.read_csv(temp_filenames[i])
+    j = i * 9
+    gstart = 0
+    gprevbottom = 0
+    while (j < (i * 9 + 9)):
+        gazeset1 = pd.read_csv(gaze_filenames[j])
+        gtop1 = gazeset1.head(1)
+        gbottom1 = gazeset1.tail(1)
+        if gprevbottom == 0 : offsetbtwfiles = 0
+        else: offsetbtwfiles = (float(gtop1["# timestamp"]) - gprevbottom ) / 1000
+        gprevbottom = float(gbottom1["# timestamp"])
+        gend = (float(gbottom1["# timestamp"]) - float(gtop1["# timestamp"])) / 1000
+        newend = gstart + gend + offsetbtwfiles
+        newstart = gstart + offsetbtwfiles
+        ts1 = tempset1[(tempset1["time_from_start"] <= (newend)) & (tempset1["time_from_start"] >= newstart)]
+        out_start.append(gstart)
+        out_end.append(gstart + gend)
+        t = ts1["raw_temperature"].mean()
+        out_temp.append(ts1["raw_temperature"].std())
+        y1 = float(ts1.head(1)["raw_temperature"])
+        y2 = float(ts1.tail(1)["raw_temperature"])
+        x1 = float(ts1.head(1)["time_from_start"])
+        x2 = float(ts1.tail(1)["time_from_start"])
+        slope = (y2-y1)/(x2-x1)
+        out_slope.append((y2-y1)/(x2-x1))
+        gstart = gstart + offsetbtwfiles + gend
+        out_temp_file = temp_filenames[i]
+        out_gaze_file = gaze_filenames[j]
+        print out_temp_file + ';' + out_gaze_file + ';' + str(float(gtop1["# timestamp"])) + ';' + \
+              str(float(gbottom1["# timestamp"])) + ';' + str(newstart) + ';' + str(newend) + ';' + str(t) + ';' + str(slope)
+        j = j + 1
+    i = i + 1
+
+
+raw_data = {'start': out_start,'end': out_end,'std_temp': out_temp, 'slope_temp': out_slope}
+df = pd.DataFrame(raw_data, columns=['start', 'end', 'std_temp','slope_temp'])
+df.to_csv('C:\Users\Soumy Jacob\Desktop\Project\Data\example.csv')
