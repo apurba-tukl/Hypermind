@@ -195,7 +195,7 @@ plt.clf()
 plt.title("Confusion Matrix For Answer Prediction")
 ax = fig.add_subplot(111)
 ax.set_aspect(1)
-res = ax.imshow(np.array(norm_conf), cmap=plt.cm.gist_rainbow, 
+res = ax.imshow(np.array(norm_conf), cmap=plt.cm.jet, 
                 interpolation='nearest')
 
 width, height = conf_arr.shape
