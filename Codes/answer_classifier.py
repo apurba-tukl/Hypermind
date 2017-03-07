@@ -176,7 +176,7 @@ Y_pred = np.concatenate((Y_pred1,Y_pred2,Y_pred3,Y_pred4,Y_pred5,Y_pred6,Y_pred7
 Y_true = pd.concat([ground_truth1, ground_truth2,ground_truth3,ground_truth4,ground_truth5,ground_truth6,ground_truth7,
                     ground_truth8,ground_truth9,ground_truth10,ground_truth11,ground_truth12,ground_truth13,ground_truth14])
 
-conf_arr = confusion_matrix(Y_pred, Y_true)
+conf_arr = confusion_matrix(Y_true, Y_pred)
 print conf_arr
 norm_conf = []
 for i in conf_arr:
