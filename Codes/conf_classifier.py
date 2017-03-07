@@ -135,79 +135,91 @@ ground_truth14 = test_x14['confidence']
 ##train_x14 = scaler.transform(train_x14)
 test_x14 = test_x14.drop(['Participant', 'confidence'], axis = 1, inplace = False)
 
-#cls = SVC(kernel = "linear")
-cls = SVC(kernel = "rbf") 
 #cls = KNeighborsClassifier()
-#cls = SVR(kernel = "rbf")
+#cls = linear()
+#cls = SVR(kernel = "linear")
 classfier_scores = []
 
 print "The process Started...."
 t1 = time.time()                    
 
-cls.fit(train_x1,train_Y1)
-classfier_scores.append(cls.score(test_x1, ground_truth1))
+cls1 = KNeighborsClassifier() 
+cls1.fit(train_x1,train_Y1)
+classfier_scores.append(cls1.score(test_x1, ground_truth1))
+Y_pred1 = (cls1.predict(test_x1))
 
-cls.fit(train_x2,train_Y2)
-classfier_scores.append(cls.score(test_x2, ground_truth2))
+cls2 = KNeighborsClassifier() 
+cls2.fit(train_x2,train_Y2)
+classfier_scores.append(cls2.score(test_x2, ground_truth2))
+Y_pred2 = (cls2.predict(test_x2))
 
-cls.fit(train_x3,train_Y3)
-classfier_scores.append(cls.score(test_x3, ground_truth3))
+cls3 = KNeighborsClassifier() 
+cls3.fit(train_x3,train_Y3)
+classfier_scores.append(cls3.score(test_x3, ground_truth3))
+Y_pred3 = (cls3.predict(test_x3))
 
-cls.fit(train_x4,train_Y4)
-classfier_scores.append(cls.score(test_x4, ground_truth4))
+cls4 = KNeighborsClassifier() 
+cls4.fit(train_x4,train_Y4)
+classfier_scores.append(cls4.score(test_x4, ground_truth4))
+Y_pred4 = (cls4.predict(test_x4))
 
-cls.fit(train_x5,train_Y5)
-classfier_scores.append(cls.score(test_x5, ground_truth5))
+cls5 = KNeighborsClassifier() 
+cls5.fit(train_x5,train_Y5)
+classfier_scores.append(cls5.score(test_x5, ground_truth5))
+Y_pred5 = (cls5.predict(test_x5))
 
-cls.fit(train_x6,train_Y6)
-classfier_scores.append(cls.score(test_x6, ground_truth6))
+cls6 = KNeighborsClassifier() 
+cls6.fit(train_x6,train_Y6)
+classfier_scores.append(cls6.score(test_x6, ground_truth6))
+Y_pred6 = (cls6.predict(test_x6))
 
-cls.fit(train_x7,train_Y7)
-classfier_scores.append(cls.score(test_x7, ground_truth7))
+cls7 = KNeighborsClassifier() 
+cls7.fit(train_x7,train_Y7)
+classfier_scores.append(cls7.score(test_x7, ground_truth7))
+Y_pred7 = (cls7.predict(test_x7))
 
-cls.fit(train_x8,train_Y8)
-classfier_scores.append(cls.score(test_x8, ground_truth8))
+cls8 = KNeighborsClassifier() 
+cls8.fit(train_x8,train_Y8)
+classfier_scores.append(cls8.score(test_x8, ground_truth8))
+Y_pred8 = (cls8.predict(test_x8))
 
-cls.fit(train_x9,train_Y9)
-classfier_scores.append(cls.score(test_x9, ground_truth9))
+cls9 = KNeighborsClassifier() 
+cls9.fit(train_x9,train_Y9)
+classfier_scores.append(cls9.score(test_x9, ground_truth9))
+Y_pred9 = (cls9.predict(test_x9))
 
-cls.fit(train_x10,train_Y10)
-classfier_scores.append(cls.score(test_x10, ground_truth10))
+cls10 = KNeighborsClassifier() 
+cls10.fit(train_x10,train_Y10)
+classfier_scores.append(cls10.score(test_x10, ground_truth10))
+Y_pred10 = (cls10.predict(test_x10))
 
-cls.fit(train_x11,train_Y11)
-classfier_scores.append(cls.score(test_x11, ground_truth11))
+cls11 = KNeighborsClassifier() 
+cls11.fit(train_x11,train_Y11)
+classfier_scores.append(cls11.score(test_x11, ground_truth11))
+Y_pred11 = (cls11.predict(test_x11))
 
-cls.fit(train_x12, train_Y12)
-classfier_scores.append(cls.score(test_x12, ground_truth12))
+cls12 = KNeighborsClassifier() 
+cls12.fit(train_x12, train_Y12)
+classfier_scores.append(cls12.score(test_x12, ground_truth12))
+Y_pred12 = (cls12.predict(test_x12))
 
-cls.fit(train_x13,train_Y13)
-classfier_scores.append(cls.score(test_x13, ground_truth13))
+cls13 = KNeighborsClassifier() 
+cls13.fit(train_x13,train_Y13)
+classfier_scores.append(cls13.score(test_x13, ground_truth13))
+Y_pred13 = (cls13.predict(test_x13))
 
-cls.fit(train_x14,train_Y14)
-classfier_scores.append(cls.score(test_x14, ground_truth14))
-                
-
-Y_pred1 = (cls.predict(test_x1))
-Y_pred2 = (cls.predict(test_x2))
-Y_pred3 = (cls.predict(test_x3))
-Y_pred4 = (cls.predict(test_x4))
-Y_pred5 = (cls.predict(test_x5))
-Y_pred6 = (cls.predict(test_x6))
-Y_pred7 = (cls.predict(test_x7))
-Y_pred8 = (cls.predict(test_x8))
-Y_pred9 = (cls.predict(test_x9))
-Y_pred10 = (cls.predict(test_x10))
-Y_pred11 = (cls.predict(test_x11))
-Y_pred12 = (cls.predict(test_x12))
-Y_pred13 = (cls.predict(test_x13))
-Y_pred14 = (cls.predict(test_x14))
+cls14 = KNeighborsClassifier() 
+cls14.fit(train_x14,train_Y14)
+classfier_scores.append(cls14.score(test_x14, ground_truth14))
+Y_pred14 = (cls14.predict(test_x14))                
 
 Y_pred = np.concatenate((Y_pred1,Y_pred2,Y_pred3,Y_pred4,Y_pred5,Y_pred6,Y_pred7,Y_pred8,
                          Y_pred9,Y_pred10,Y_pred11,Y_pred12,Y_pred13,Y_pred14))
 Y_true = pd.concat([ground_truth1, ground_truth2,ground_truth3,ground_truth4,ground_truth5,ground_truth6,ground_truth7,
                     ground_truth8,ground_truth9,ground_truth10,ground_truth11,ground_truth12,ground_truth13,ground_truth14])
 
-conf_arr = confusion_matrix(Y_pred, Y_true)
+
+conf_arr = confusion_matrix(Y_true, Y_pred)
 print conf_arr
 norm_conf = []
 for i in conf_arr:
@@ -250,16 +262,9 @@ print "Total time taken", time.time() - t1
 print "Oveall_Classification_accuracy::", np.mean(classfier_scores)
 print "\n"
 
-
-
-##x_train, x_test, Y_train, Y_test = train_test_split(train_x_transformed, train_Y, test_size=0.2, random_state=5)
-##
-##classifier1 = SVC(kernel = "linear", C = 2)
-##classifier2 = SVC(kernel = "rbf", C = 2)
-##
 plt.show()
 
-#print Y_pred1
+
 
 
 
