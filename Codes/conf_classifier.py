@@ -235,7 +235,7 @@ for i in conf_arr:
 
 fig = plt.figure()
 plt.clf()
-plt.title("Confusion Matrix For Answer Prediction")
+plt.title("Confusion Matrix For Confidence Prediction")
 ax = fig.add_subplot(111)
 ax.set_aspect(1)
 
@@ -255,7 +255,8 @@ cb = fig.colorbar(res)
 alphabet = ['0', '20', '40', '60', '80', '100']
 plt.xticks(range(width), alphabet[:width])
 plt.yticks(range(height), alphabet[:height])
-
+plt.ylabel('True label')
+plt.xlabel('Predicted label')
 
 print "The process Ended"
 print "Total time taken", time.time() - t1

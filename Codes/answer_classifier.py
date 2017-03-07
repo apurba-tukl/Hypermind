@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import time
 import pickle
 
-dataset = pd.read_csv(r"G:\Semester - 3\Project\Datasets\raw\meta\training_set.csv")
+dataset = pd.read_csv(r"G:\Semester - 3\Project\Datasets\raw\meta\answer_training_set.csv")
 dataset = dataset.fillna(value = -9999)
 
 df = pd.DataFrame(dataset)
@@ -210,6 +210,9 @@ cb = fig.colorbar(res)
 alphabet = ['Zero', 'One']
 plt.xticks(range(width), alphabet[:width])
 plt.yticks(range(height), alphabet[:height])
+plt.ylabel('True label')
+plt.xlabel('Predicted label')
+
 
 
 print "The process Ended"
@@ -269,7 +272,7 @@ plt.show()
 ##
 ####classifier3.fit(x_train,Y_train)
 ####
-####print classifier3.score(x_test, Y_test)
+#print classifier3.score(x_test, Y_test)
 
 
 
