@@ -1,6 +1,11 @@
 import numpy as np
 import pandas as pd
 import os
+import math
+
+
+def distances(fx):
+    return [math.sqrt((fx[i][1] - fx[i-1][1])**2+(fx[i][2] - fx[i-1][2])**2) for i in range(1, len(fx))]
 
 
 def calcFeature(ir, fx, rg, ts):
@@ -9,12 +14,18 @@ def calcFeature(ir, fx, rg, ts):
     end_time = rg["# timestamp"].values[-1] + ts
     temps = ir[(ir["# timestamp"] > begin_time) & (ir["# timestamp"] < end_time)]["nose_filtered"].values
     pupils = rg[(rg["left_pupil"] > 0)]["left_pupil"].values
+    fixation_durations = fx["duration"].values
+    saccade_lengths = distances(fx.values)
 
     return [
             np.std(temps),
             (temps[-1] - temps[0])/(end_time - begin_time),
             np.std(pupils),
             (pupils[-1] - pupils[0])/(end_time - begin_time),
+            np.mean(fixation_durations),
+            np.std(fixation_durations),
+            np.mean(saccade_lengths),
+            np.std(saccade_lengths)
            ]
 
 
@@ -53,5 +64,9 @@ for ts in np.arange(0, 10, 0.5):  # time shift
             features.append(["P"+str(p), answers[i], confidences[i]] + calcFeature(ir, fx, rg, ts))
 
     df = pd.DataFrame(data=np.array(features),
-                      columns=["participant", "answer", "confidence", "std_temp", "slope_temp", "std_pupil", "slope_pupil"])
+                      columns=["participant", "answer", "confidence",
+                               "std_temp", "slope_temp",
+                               "std_pupil", "slope_pupil",
+                               "mean_fixation_duration", "std_fixation_duration",
+                               "mean_saccade_length", "std_saccade_length"])
     df.to_csv(cd + "/../Datafiles/working/feature/shift_"+str(ts)+".csv", index=False)
