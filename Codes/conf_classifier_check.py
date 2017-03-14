@@ -7,23 +7,23 @@ import os
 
 cd = os.path.dirname(os.path.abspath(__file__))
 
-df = pd.read_csv(cd + "/../Datafiles/conf_training_set.csv")
+df = pd.read_csv(cd + "/../Datafiles/working/feature/shift_0.0.csv")
 df = df.fillna(value=-9999)
 
 labels = []
 predicteds = []
 classfier_scores = []
 for p in range(1, 15):
-    training = df[df.Participant != "P"+str(p)]
-    X_train = training.drop(["Participant", "confidence"], axis=1, inplace=False)
+    training = df[df["participant"] != "P"+str(p)]
+    X_train = training.drop(["participant", "answer", "confidence"], axis=1, inplace=False)
     y_train = training["confidence"]
 
-    testing = df[df.Participant == "P"+str(p)]
-    X_test = testing.drop(["Participant", "confidence"], axis=1, inplace=False)
+    testing = df[df["participant"] == "P"+str(p)]
+    X_test = testing.drop(["participant", "answer", "confidence"], axis=1, inplace=False)
     y_test = testing["confidence"]
     labels.extend(y_test)
 
-    clf = SVC()
+    clf = SVC(class_weight="balanced")
     clf.fit(X_train, y_train)
     predicted = clf.predict(X_test)
     predicteds.extend(predicted)
