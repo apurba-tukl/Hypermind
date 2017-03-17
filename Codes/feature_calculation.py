@@ -35,7 +35,6 @@ groupB = [2, 4, 5, 8, 9, 13, 14]
 scores = pd.read_csv(cd + "/../Datafiles/scores.csv").values
 # format of scores: pid, grade, group, A1_score, A1_confidence, A2...
 
-# for ts in np.arange(0, 10, 0.5):  # time shift
 for ts in np.arange(0, 10, 0.5):  # time shift
     features = []
 
